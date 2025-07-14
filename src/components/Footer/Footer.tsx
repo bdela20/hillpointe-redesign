@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
-import HillpointeLogo from '../../assets/Images/Hillpointe Letter.svg';
+import HillpointeLogo from '../../assets/Images/Letter.svg';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');

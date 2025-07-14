@@ -102,7 +102,7 @@ const MissionSection: React.FC = () => {
             <div className={styles.quoteBlock}>
               <div className={styles.founderImageWrapper}>
                 <img 
-                  src="public/Images/Kelly-Mahoney.jpg" 
+                  src="/Images/Kelly-Mahoney.jpg" 
                   alt="Kelly Mahoney" 
                   className={`${styles.founderImage} ${hoveredFounder === 'kelly' ? styles.hovered : ''}`}
                   onMouseEnter={() => setHoveredFounder('kelly')}
@@ -127,7 +127,7 @@ const MissionSection: React.FC = () => {
             <div className={styles.quoteBlock}>
               <div className={styles.founderImageWrapper}>
                 <img 
-                  src="public/Images/steven-campisi-scaled.jpg" 
+                  src="/Images/steven-campisi-scaled.jpg" 
                   alt="Steven Campisi" 
                   className={`${styles.founderImage} ${hoveredFounder === 'steven' ? styles.hovered : ''}`}
                   onMouseEnter={() => setHoveredFounder('steven')}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navigation.module.scss';
-import HillpointeLogo from '../../assets/Images/Hillpointe Letter.svg';
+import HillpointeLogo from '../../assets/Images/Letter.svg';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
