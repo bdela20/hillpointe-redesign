@@ -1,10 +1,8 @@
 // MissionSection.tsx
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from './MissionSection.module.scss';
 
 const MissionSection: React.FC = () => {
-  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [counts, setCounts] = useState({
@@ -13,15 +11,6 @@ const MissionSection: React.FC = () => {
     commute: 0
   });
   const [hoveredFounder, setHoveredFounder] = useState<string | null>(null);
-
-  // Add navigation handlers
-  const handlePartnerWithUs = () => {
-    navigate('/investors');
-  };
-
-  const handleReadOurStory = () => {
-    navigate('/about');
-  };
 
   // Intersection Observer for section visibility
   useEffect(() => {
@@ -115,7 +104,7 @@ const MissionSection: React.FC = () => {
                 <img 
                   src="public/Images/Kelly-Mahoney.jpg" 
                   alt="Kelly Mahoney" 
-                  className={styles.founderImage}
+                  className={`${styles.founderImage} ${hoveredFounder === 'kelly' ? styles.hovered : ''}`}
                   onMouseEnter={() => setHoveredFounder('kelly')}
                   onMouseLeave={() => setHoveredFounder(null)}
                 />
@@ -140,7 +129,7 @@ const MissionSection: React.FC = () => {
                 <img 
                   src="public/Images/steven-campisi-scaled.jpg" 
                   alt="Steven Campisi" 
-                  className={styles.founderImage}
+                  className={`${styles.founderImage} ${hoveredFounder === 'steven' ? styles.hovered : ''}`}
                   onMouseEnter={() => setHoveredFounder('steven')}
                   onMouseLeave={() => setHoveredFounder(null)}
                 />
@@ -174,7 +163,7 @@ const MissionSection: React.FC = () => {
                 </div>
                 <div className={styles.impactStat}>
                   <span className={styles.impactNumber}>{counts.commute.toLocaleString()}+</span>
-                  <span className={styles.impactLabel}>Commute Hours saved daily</span>
+                  <span className={styles.impactLabel}>Hours saved daily</span>
                 </div>
               </div>
               <p className={styles.impactText}>
