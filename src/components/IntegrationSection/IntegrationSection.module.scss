@@ -1,0 +1,502 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.integrationSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #2C3E50 0%, #34495E 100%); // Medium gray
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+// Timeline Styles
+.timeline {
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+}
+
+.timelineTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #FFFFFF;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #60A5FA;
+  }
+}
+
+.timelineWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  // Horizontal line connecting all dots
+  &::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 2rem;
+    right: 2rem;
+    height: 2px;
+    background: rgba(96, 165, 250, 0.3);
+    z-index: 0;
+  }
+  
+  @media (max-width: 1024px) {
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(96, 165, 250, 0.3);
+      border-radius: 3px;
+      
+      &:hover {
+        background: rgba(96, 165, 250, 0.5);
+      }
+    }
+  }
+}
+
+.timelineItem {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  // The dot/circle for each timeline item
+  &::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: #2C3E50;
+    border: 3px solid #60A5FA;
+    border-radius: 50%;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover::before {
+    background: #60A5FA;
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.6);
+    transform: translateX(-50%) scale(1.2);
+  }
+  
+  &:hover .timelineYear {
+    color: #60A5FA;
+  }
+}
+
+.timelineYear {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #60A5FA;
+  margin-bottom: 0.75rem;
+  padding-top: 3rem;
+  transition: color 0.3s ease;
+}
+
+.timelineText {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  max-width: 150px;
+  margin: 0 auto;
+  
+  @media (min-width: 768px) {
+    font-size: 0.95rem;
+    max-width: 180px;
+  }
+}
+
+// Mobile adjustments for timeline
+@media (max-width: 767px) {
+  .timeline {
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+  }
+  
+  .timelineTitle {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .timelineWrapper {
+    display: flex;
+    gap: 2rem;
+    padding: 0 1rem;
+    
+    &::before {
+      left: 1rem;
+      right: auto;
+      width: calc(100% - 2rem);
+    }
+  }
+  
+  .timelineItem {
+    min-width: 120px;
+  }
+  
+  .timelineYear {
+    font-size: 1.25rem;
+  }
+  
+  .timelineText {
+    font-size: 0.8rem;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #60A5FA 0%, #FFFFFF 50%, #1E3A8A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.centerHighlight {
+  text-align: center;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  max-width: 400px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(59, 130, 246, 0.2),
+    inset 0 0 60px rgba(59, 130, 246, 0.1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      rgba(96, 165, 250, 0.2) 60deg,
+      transparent 120deg,
+      rgba(30, 58, 138, 0.2) 180deg,
+      transparent 240deg,
+      rgba(59, 130, 246, 0.2) 300deg,
+      transparent 360deg
+    );
+    animation: rotate 10s linear infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: linear-gradient(135deg, rgba(10, 22, 40, 0.9), rgba(30, 58, 138, 0.9));
+    border-radius: 15px;
+    z-index: -1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.centerValue {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FFFFFF 0%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  animation: holographic 3s ease-in-out infinite;
+  text-shadow: 0 0 40px rgba(96, 165, 250, 0.5);
+}
+
+@keyframes holographic {
+  0%, 100% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(30deg) brightness(1.2);
+  }
+}
+
+.centerLabel {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  z-index: 1;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+  position: relative;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.flowConnections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.connectionLine {
+  stroke: rgba(96, 165, 250, 0.3);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 5, 5;
+  animation: flowAnimation 2s linear infinite;
+}
+
+@keyframes flowAnimation {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+.stepCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  animation-delay: calc(var(--index) * 0.1s);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(135deg, transparent 0%, rgba(96, 165, 250, 0.5) 50%, transparent 100%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 60px rgba(96, 165, 250, 0.2);
+    border-color: rgba(96, 165, 250, 0.3);
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    .stepIcon {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, #60A5FA, #3B82F6);
+      box-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+    }
+    
+    .stepSavings {
+      animation: pulse 1s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 40px rgba(96, 165, 250, 0.8);
+  }
+}
+
+.stepIcon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #1E3A8A, #0A1628);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  transition: all 0.6s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  
+  &::after {
+    content: attr(data-icon);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #60A5FA, #3B82F6);
+    border-radius: 12px;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+}
+
+.stepDescription {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.stepSavings {
+  font-weight: 700;
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.bottomContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.explainer {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+}

@@ -1,0 +1,510 @@
+// Hero.module.scss - Streamlined with Enhanced Focus Item Hovers
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0A0F1C 0%, #0A1628 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px 0;
+
+  @media (max-width: $desktop) {
+    min-height: auto;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 100px 0 60px 0;
+  }
+}
+
+// Background Elements
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gradientOrb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -300px;
+  right: -100px;
+  filter: blur(80px);
+  animation: float 20s ease-in-out infinite;
+  z-index: 0;
+
+  @media (max-width: $desktop) {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    right: -50px;
+  }
+}
+
+.gridPattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(30, 58, 138, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 138, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+}
+
+.parallaxLayer {
+  position: absolute;
+  inset: 0;
+  background: url('/images/abstract-pattern.svg') center/cover;
+  opacity: 0.05;
+  will-change: transform;
+}
+
+// Canvas Background Container
+.canvasBackgroundContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  
+  .canvasBackground {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(2px);
+    transition: opacity 0.3s ease;
+  }
+}
+
+// Container - Modified for better separation
+.container {
+  @include container;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 120px;
+  align-items: center;
+  max-width: 1600px;
+  padding: 0 40px;
+
+  @media (max-width: $desktop) {
+    grid-template-columns: 1fr;
+    gap: 80px;
+    padding: 0 24px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 0 20px;
+    gap: 60px;
+  }
+}
+
+// Content
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: -20px;
+
+  @media (max-width: $desktop) {
+    align-items: center;
+    margin-left: 0;
+  }
+}
+
+.headline {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  
+  @media (max-width: $tablet) {
+    font-size: clamp(36px, 7vw, 64px);
+  }
+  
+  span {
+    display: block;
+    overflow: visible;
+  }
+
+  .line1, .line2 {
+    color: $white;
+  }
+
+  .line3 {
+    margin-top: 8px;
+  }
+
+  .gradient {
+    background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #1E3A8A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.15em;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #60A5FA 0%, #1E3A8A 100%);
+      border-radius: 2px;
+      animation: glow 2s ease-in-out infinite;
+    }
+  }
+}
+
+.subheadline {
+  font-size: clamp(32px, 2.5vw, 24px);
+  color: rgba($white, 0.8);
+  line-height: 1.5;
+  margin-bottom: 40px;
+  font-weight: 200;
+
+  .highlight {
+    color: #60A5FA;
+    font-weight: 500;
+  }
+}
+
+// CTA Buttons
+.ctaGroup {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  @media (max-width: $desktop) {
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.primaryCta {
+  position: relative;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+  color: $white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+    
+    .ctaGlow {
+      opacity: 1;
+    }
+  }
+
+  .ctaText {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ctaGlow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.secondaryCta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: transparent;
+  color: $white;
+  border: 2px solid rgba($white, 0.2);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    border-color: #60A5FA;
+    color: #60A5FA;
+    transform: translateY(-2px);
+    
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+}
+
+// Investment Dashboard Card - Cleaner without metrics
+.investmentDashboard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 360px; // Reduced since no metrics
+  padding: 20px 0;
+  margin-right: -40px;
+
+  @media (max-width: $desktop) {
+    justify-content: center;
+    margin-top: 40px;
+    margin-right: 0;
+  }
+
+  @media (max-width: $tablet) {
+    margin-top: 30px;
+    min-height: auto;
+    padding: 15px 0;
+  }
+}
+
+.investmentCard {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: 
+    0 15px 45px rgba(0, 0, 0, 0.2),
+    inset 0 0 15px rgba(255, 255, 255, 0.01);
+  animation: float 6s ease-in-out infinite;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  // HOVER EFFECT FOR ENTIRE CARD
+  &:hover {
+    background: rgba(96, 165, 250, 0.15); // Clear blue background on hover
+    border-color: rgba(96, 165, 250, 0.4);
+    box-shadow: 
+      0 25px 60px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(96, 165, 250, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+
+    // Make all text brighter on card hover
+    .cardTitle {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .focusTitle {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .focusDescription {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .iconWrapper {
+      background: rgba(96, 165, 250, 0.3);
+      color: #60A5FA;
+      box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+    }
+  }
+
+  @media (max-width: $tablet) {
+    padding: 24px 20px;
+    max-width: 85%;
+  }
+}
+
+.cardTitle {
+  position: relative;
+  z-index: 1;
+  font-size: 24px;
+  font-weight: 700;
+  color: $white;
+  text-align: center;
+  margin-bottom: 32px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #3B82F6;
+    border-radius: 2px;
+  }
+
+  @media (max-width: $tablet) {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+}
+
+// Focus Items - SIMPLE STYLE (hover effect is on main card)
+.focusItem {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (max-width: $tablet) {
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3B82F6;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: $tablet) {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.focusContent {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.focusTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $white;
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+
+  @media (max-width: $tablet) {
+    font-size: 15px;
+  }
+}
+
+.focusDescription {
+  font-size: 14px;
+  color: rgba($white, 0.6);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+
+  @media (max-width: $tablet) {
+    font-size: 13px;
+  }
+}
+
+// Scroll Indicator
+.scrollIndicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba($white, 0.5);
+  animation: bounce 2s ease-in-out infinite;
+  z-index: 10;
+
+  @media (max-width: $tablet) {
+    display: none;
+  }
+}
+
+.scrollLine {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent 0%, rgba($white, 0.5) 100%);
+  border-radius: 2px;
+}
+
+.scrollText {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// Animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}

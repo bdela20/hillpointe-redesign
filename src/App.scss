@@ -1,0 +1,15 @@
+// src/App.scss
+@import './styles/variables';
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $deep-space;
+  
+  main {
+    flex: 1;
+    // Add padding-top to account for fixed navigation
+    padding-top: 80px;
+  }
+}

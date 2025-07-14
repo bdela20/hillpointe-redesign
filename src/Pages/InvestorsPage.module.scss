@@ -1,0 +1,1386 @@
+// src/Pages/InvestorsPage.module.scss
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.investorsPage {
+  min-height: 100vh;
+  background: $deep-space;
+  padding-top: 80px; // Account for fixed navigation
+}
+
+// Hero Section
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, $deep-space 0%, $navy 100%);
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  
+  .gridPattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba($electric-blue, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($electric-blue, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+  }
+  
+  .glowOrb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($electric-blue, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -300px;
+    right: -200px;
+    filter: blur(60px);
+    animation: floatOrb 15s ease-in-out infinite;
+  }
+  
+  .glowOrb2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba($glow, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: -200px;
+    left: -100px;
+    filter: blur(50px);
+    animation: floatOrb 20s ease-in-out infinite reverse;
+  }
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.heroContent {
+  max-width: 800px;
+  
+  .fundLabel {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba($electric-blue, 0.1);
+    border: 1px solid rgba($electric-blue, 0.3);
+    border-radius: 50px;
+    color: $electric-blue;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+  
+  .heroTitle {
+    margin-bottom: 1.5rem;
+    
+    .fundAmount {
+      display: block;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, $electric-blue 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .subtitle {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+  }
+  
+  .heroDescription {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+  
+  .heroActions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+    
+    .primaryButton,
+    .secondaryButton {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    .primaryButton {
+      background: linear-gradient(135deg, $electric-blue 0%, $glow 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, $glow 0%, $electric-blue 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba($electric-blue, 0.4);
+        
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+    
+    .secondaryButton {
+      background: transparent;
+      border: 1px solid rgba($electric-blue, 0.5);
+      color: $electric-blue;
+      backdrop-filter: blur(10px);
+      
+      &:hover {
+        background: rgba($electric-blue, 0.1);
+        border-color: $electric-blue;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Metrics Bar
+.metricsBar {
+  background: rgba($navy, 0.5);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba($electric-blue, 0.2);
+  border-bottom: 1px solid rgba($electric-blue, 0.2);
+  padding: 2rem 0;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  
+  .metric {
+    text-align: center;
+    
+    .metricValue {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      color: $electric-blue;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba($electric-blue, 0.5);
+    }
+    
+    .metricLabel {
+      display: block;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+// Performance Section - Now with WHITE background
+.performanceSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  position: relative;
+  
+  // Add subtle pattern for visual interest
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+  
+  .sectionTitle {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #1e293b 0%, $electric-blue 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .sectionSubtitle {
+    font-size: 1.25rem;
+    color: #64748b;
+  }
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.performanceCard {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba($electric-blue, 0.05) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    border-color: $electric-blue;
+    box-shadow: 0 20px 40px rgba($electric-blue, 0.1);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    
+    .metricValue {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $electric-blue;
+    }
+    
+    .trend {
+      font-size: 1rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      background: rgba(59, 130, 246, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      
+      &.up {
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+      }
+      
+      &.stable {
+        color: $electric-blue;
+        background: rgba($electric-blue, 0.1);
+      }
+    }
+  }
+  
+  .metricTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .metricDescription {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Strategy Section
+.strategySection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, $deep-space 0%, rgba($navy, 0.5) 100%);
+}
+
+.tabNavigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  
+  .tabButton {
+    display: inline-block;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid rgba($electric-blue, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: rgba($electric-blue, 0.5);
+      color: white;
+    }
+    
+    &.active {
+      background: rgba($electric-blue, 0.1);
+      border-color: $electric-blue;
+      color: $electric-blue;
+      box-shadow: 0 0 20px rgba($electric-blue, 0.3);
+    }
+  }
+}
+
+.tabContent {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.overviewContent {
+  .contentGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .contentMain {
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    h4 {
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
+      color: $electric-blue;
+    }
+    
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .bulletList {
+      list-style: none;
+      padding: 0;
+      
+      li {
+        position: relative;
+        padding-left: 2rem;
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        
+        &::before {
+          content: '▸';
+          position: absolute;
+          left: 0;
+          color: $electric-blue;
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+  
+  .statsPanel {
+    background: rgba($navy, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba($electric-blue, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    height: fit-content;
+    
+    h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    .statsList {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      
+      .stat {
+        display: flex;
+        flex-direction: column;
+        
+        .statValue {
+          font-size: 2rem;
+          font-weight: 700;
+          color: $electric-blue;
+          margin-bottom: 0.25rem;
+        }
+        
+        .statLabel {
+          font-size: 0.875rem;
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+}
+
+.strategyContent {
+  .strategyGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    
+    // Responsive behavior for smaller screens
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  
+  .strategyCard {
+    background: rgba($navy, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba($electric-blue, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      border-color: $electric-blue;
+      box-shadow: 0 20px 40px rgba($electric-blue, 0.2);
+      
+      .iconWrapper {
+        transform: scale(1.1);
+        background: rgba($electric-blue, 0.2);
+      }
+    }
+    
+    .iconWrapper {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba($electric-blue, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      
+      .icon {
+        font-size: 2rem;
+        color: $electric-blue;
+        font-weight: 300;
+        line-height: 1;
+      }
+    }
+    
+    h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    p {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+  }
+}
+
+.portfolioContent {
+  .portfolioStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .portfolioStat {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba($navy, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba($electric-blue, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: $electric-blue;
+      transform: translateX(5px);
+    }
+    
+    .statIcon {
+      font-size: 1.75rem;
+      font-weight: 700;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba($electric-blue, 0.1);
+      border-radius: 50%;
+      color: $electric-blue;
+      font-family: monospace;
+    }
+    
+    .statInfo {
+      display: flex;
+      flex-direction: column;
+      
+      .statValue {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $electric-blue;
+      }
+      
+      .statLabel {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+  
+  .portfolioMap {
+    h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+    
+    // Enhanced map container for interactive map
+    .mapContainer {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba($electric-blue, 0.2);
+      position: relative;
+      background: rgba($navy, 0.3);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba($electric-blue, 0.2);
+
+      // Custom Leaflet styles for investor theme
+      :global(.leaflet-container) {
+        background: #1e293b !important;
+        font-family: inherit;
+      }
+
+      :global(.leaflet-control-zoom) {
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      :global(.leaflet-control-zoom a) {
+        background: rgba(15, 23, 42, 0.9) !important;
+        color: white !important;
+        border: 1px solid rgba($electric-blue, 0.3) !important;
+        backdrop-filter: blur(10px);
+        
+        &:hover {
+          background: rgba($electric-blue, 0.8) !important;
+        }
+      }
+
+      :global(.leaflet-popup-content-wrapper) {
+        background: rgba(15, 23, 42, 0.95) !important;
+        backdrop-filter: blur(20px);
+        border-radius: 12px !important;
+        border: 1px solid rgba($electric-blue, 0.3);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+      }
+
+      :global(.leaflet-popup-tip) {
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1px solid rgba($electric-blue, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      :global(.leaflet-popup-close-button) {
+        color: #94a3b8 !important;
+        font-size: 16px !important;
+        padding: 8px !important;
+        
+        &:hover {
+          color: white !important;
+        }
+      }
+    }
+    
+    .mapPlaceholder {
+      background: rgba($navy, 0.3);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba($electric-blue, 0.2);
+      border-radius: 20px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      
+      .mapOverlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle, rgba($electric-blue, 0.1) 0%, transparent 70%);
+        
+        p {
+          font-size: 1.125rem;
+          color: rgba(255, 255, 255, 0.5);
+          margin-bottom: 1rem;
+        }
+        
+        .mapLink {
+          color: $electric-blue;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Custom popup content styles for investor map
+.customPopup {
+  :global(.leaflet-popup-content) {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 300px !important;
+  }
+}
+
+.popupContent {
+  padding: 1.5rem;
+  color: white;
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+    color: #ffffff;
+  }
+}
+
+.popupStatus {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+
+  &.statusCompleted {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+  }
+
+  &.statusConstruction {
+    background: linear-gradient(135deg, $electric-blue, #2563eb);
+    color: white;
+  }
+
+  &.statusDevelopment {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+  }
+}
+
+.popupLocation {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.popupStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.popupStat {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popupStatValue {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $electric-blue;
+  margin-bottom: 0.25rem;
+}
+
+.popupStatLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.popupButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, $electric-blue, $glow);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba($electric-blue, 0.4);
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(2px);
+  }
+}
+
+// Documents Section - Now with WHITE background
+.documentsSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  position: relative;
+  
+  // Add subtle pattern for visual interest
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 70% 30%, rgba(96, 165, 250, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.documentsCard {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 30px;
+  padding: 4rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba($electric-blue, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .lockIcon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: rgba($electric-blue, 0.05);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 2;
+    border: 2px solid rgba($electric-blue, 0.1);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      background: radial-gradient(circle, transparent 30%, rgba($electric-blue, 0.05) 70%, transparent 100%);
+      border-radius: 50%;
+      animation: pulseLock 3s ease-in-out infinite;
+      z-index: -1;
+    }
+    
+    svg {
+      color: $electric-blue;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  
+ h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #1e293b 0%, $electric-blue 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 2;
+    font-weight: 700;
+  }
+  
+  p {
+    color: #64748b;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+    font-size: 1.1rem;
+  }
+  
+  .accessButton {
+    display: inline-block;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, $electric-blue 0%, $glow 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba($electric-blue, 0.2);
+    
+    &:hover {
+      background: linear-gradient(135deg, $glow 0%, $electric-blue 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba($electric-blue, 0.3);
+    }
+  }
+}
+
+// Contact Section
+.contactSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, $deep-space 0%, $navy 100%);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contactInfo {
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff 0%, $electric-blue 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  
+  .contactDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    .contactItem {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      
+      .contactLabel {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      a {
+        color: $electric-blue;
+        text-decoration: none;
+        font-size: 1.125rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          color: lighten($electric-blue, 10%);
+          transform: translateX(5px);
+        }
+      }
+      
+      span:not(.contactLabel) {
+        color: white;
+        font-size: 1.125rem;
+      }
+    }
+  }
+}
+
+.contactForm {
+  background: rgba($navy, 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($electric-blue, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: white;
+  }
+  
+  .formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .formInput,
+  .formTextarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba($electric-blue, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: $electric-blue;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 20px rgba($electric-blue, 0.2);
+    }
+  }
+  
+  .formTextarea {
+    width: 100%;
+    resize: vertical;
+    margin-bottom: 1.5rem;
+  }
+  
+  .submitButton {
+    display: inline-block;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    background: linear-gradient(135deg, $electric-blue 0%, $glow 100%);
+    color: white;
+    padding: 1rem;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, $glow 0%, $electric-blue 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba($electric-blue, 0.4);
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Modal
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.loginModal {
+  background: $navy;
+  border: 1px solid rgba($electric-blue, 0.3);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  
+  .closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    
+    &:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.modalContent {
+  .modalTitle {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-align: center;
+  }
+  
+  .modalSubtitle {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    label {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+    
+    input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba($electric-blue, 0.3);
+      border-radius: 10px;
+      padding: 1rem;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      
+      &:focus {
+        outline: none;
+        border-color: $electric-blue;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 20px rgba($electric-blue, 0.2);
+      }
+    }
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    
+    .rememberMe {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+      
+      span {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+    
+    .forgotPassword {
+      font-size: 0.875rem;
+      color: $electric-blue;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: lighten($electric-blue, 10%);
+      }
+    }
+  }
+  
+  .loginButton {
+    display: inline-block;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(135deg, $electric-blue 0%, $glow 100%);
+    color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba($electric-blue, 0.4);
+    }
+  }
+}
+
+.modalFooter {
+  margin-top: 2rem;
+  text-align: center;
+  
+  p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    
+    a {
+      color: $electric-blue;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: lighten($electric-blue, 10%);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, -30px);
+  }
+  50% {
+    transform: translate(-30px, 50px);
+  }
+  75% {
+    transform: translate(30px, 30px);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes pulseLock {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .popupContent {
+    padding: 1rem;
+  }
+  
+  .popupStats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .popupHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .portfolioContent .portfolioMap .mapContainer {
+    border-radius: 12px;
+  }
+}

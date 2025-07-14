@@ -1,0 +1,228 @@
+// src/styles/mixins.scss
+@import './variables';
+
+// Container mixin
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  @media (max-width: $tablet) {
+    padding: 0 1.5rem;
+  }
+  
+  @media (max-width: $mobile) {
+    padding: 0 1rem;
+  }
+}
+
+// Flex center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Glass morphism effect
+@mixin glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Gradient text
+@mixin gradient-text {
+  background: linear-gradient(135deg, #fff 0%, $electric-blue 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Responsive
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+// Button base
+@mixin button-base {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Hover glow effect
+@mixin hover-glow($color: $electric-blue) {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba($color, 0.3) 0%, transparent 70%);
+    transition: width 0.6s ease, height 0.6s ease;
+    transform: translate(-50%, -50%);
+  }
+  
+  &:hover::before {
+    width: 300%;
+    height: 300%;
+  }
+}
+
+// Typography mixins
+@mixin h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+@mixin h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+@mixin h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+@mixin h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+@mixin h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+@mixin h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+// Body text mixins
+@mixin body-large {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+@mixin body-medium {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+@mixin body-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+// Label mixins
+@mixin label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@mixin caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: rgba($white, 0.7);
+}
+
+// Button mixins
+@mixin button-primary {
+  @include button-base;
+  background: $electric-blue;
+  color: $white;
+  border: 2px solid $electric-blue;
+  
+  &:hover {
+    background: transparent;
+    color: $electric-blue;
+    box-shadow: 0 0 20px rgba($electric-blue, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  color: $white;
+  border: 2px solid rgba($white, 0.3);
+  
+  &:hover {
+    border-color: $electric-blue;
+    color: $electric-blue;
+    box-shadow: 0 0 20px rgba($electric-blue, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background: transparent;
+  color: $electric-blue;
+  border: 2px solid transparent;
+  padding: 0.5rem 1.5rem;
+  
+  &:hover {
+    background: rgba($electric-blue, 0.1);
+    border-color: rgba($electric-blue, 0.3);
+  }
+}

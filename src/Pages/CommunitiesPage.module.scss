@@ -1,0 +1,807 @@
+// src/Pages/CommunitiesPage.module.scss
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.communitiesPage {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding-top: 80px; // Account for fixed navigation
+}
+
+// Hero Section - Keep dark for contrast
+.hero {
+  position: relative;
+  padding: 5rem 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, $deep-space 0%, $navy 100%);
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  
+  .gridPattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba($electric-blue, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($electric-blue, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+  }
+  
+  .glowOrb {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($electric-blue, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -300px;
+    right: -200px;
+    filter: blur(60px);
+    animation: floatOrb 15s ease-in-out infinite;
+  }
+  
+  .glowOrb2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba($glow, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: -200px;
+    left: -100px;
+    filter: blur(50px);
+    animation: floatOrb 20s ease-in-out infinite reverse;
+  }
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  
+  span {
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: white;
+  }
+  
+  .gradient {
+    background: linear-gradient(135deg, #fff 0%, $electric-blue 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+// Stats Bar - Keep dark theme
+.statsBar {
+  background: rgba($navy, 0.5);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba($electric-blue, 0.2);
+  border-bottom: 1px solid rgba($electric-blue, 0.2);
+  padding: 2rem 0;
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+    
+    .statNumber {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      color: $electric-blue;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba($electric-blue, 0.5);
+    }
+    
+    .statLabel {
+      display: block;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+// Filters
+.filters {
+  padding: 3rem 0 2rem;
+  background: #f8f9fa;
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    label {
+      font-size: 0.875rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .filterButtons {
+      display: flex;
+      gap: 0.5rem;
+      
+      .filterButton {
+        padding: 0.5rem 1.5rem;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 50px;
+        color: #4b5563;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        svg {
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover {
+          border-color: #3b82f6;
+          color: #3b82f6;
+          
+          svg {
+            transform: scale(1.1);
+          }
+        }
+        
+        &.active {
+          background: #3b82f6;
+          border-color: #3b82f6;
+          color: white;
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+          
+          svg {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Communities Grid Section
+.communitiesGrid {
+  padding: 3rem 0 5rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
+  position: relative;
+  overflow: hidden;
+  
+  // Background pattern
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+// Community Card - Updated for investor focus
+.communityCard {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: calc(var(--index) * 0.1s);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+
+    .imageOverlay {
+      opacity: 0.3;
+    }
+
+    .communityImage {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.communityImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+  position: relative;
+
+  .imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.4) 100%);
+    transition: opacity 0.3s ease;
+    opacity: 0.2;
+  }
+
+  .status {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+
+    &.statusStabilized {
+      background: rgba(34, 197, 94, 0.1);
+      color: #16A34A;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    &.statusLeaseUp {
+      background: rgba(96, 165, 250, 0.1);
+      color: #3B82F6;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+    }
+
+    &.statusConstruction {
+      background: rgba(245, 158, 11, 0.1);
+      color: #F59E0B;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    &.statusDevelopment {
+      background: rgba(139, 92, 246, 0.1);
+      color: #8B5CF6;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+  }
+}
+
+.cardContent {
+  padding: 20px;
+  position: relative;
+}
+
+.cardHeader {
+  margin-bottom: 16px;
+
+  .communityName {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0A1628;
+    margin-bottom: 4px;
+  }
+
+  .location {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+}
+
+// New investor metrics section
+.keyMetrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #E5E7EB;
+  border-bottom: 1px solid #E5E7EB;
+
+  .metricItem {
+    text-align: center;
+    
+    .metricValue {
+      display: block;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #0A1628;
+      line-height: 1.2;
+    }
+
+    .metricLabel {
+      display: block;
+      font-size: 0.625rem;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+  }
+}
+
+.websiteLink {
+  margin-bottom: 16px;
+  
+  a {
+    color: #3B82F6;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #1E3A8A;
+      text-decoration: underline;
+    }
+  }
+}
+
+.cardHover {
+  margin-top: 0;
+  
+  &.visible {
+    .viewButton {
+      width: 100%;
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(96, 165, 250, 0.3);
+      }
+
+      svg {
+        transition: transform 0.3s ease;
+      }
+
+      &:hover svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+// Map Section - Keep dark theme
+.mapSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, $deep-space 0%, $navy 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .mapTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff 0%, $electric-blue 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .mapContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    
+    .mapPlaceholder {
+      background: rgba($navy, 0.3);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba($electric-blue, 0.2);
+      border-radius: 20px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      
+      p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    // Custom Leaflet popup styles
+    :global(.leaflet-popup-content-wrapper) {
+      background: rgba(15, 23, 42, 0.95) !important;
+      backdrop-filter: blur(20px);
+      border-radius: 12px !important;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    :global(.leaflet-popup-tip) {
+      background: rgba(15, 23, 42, 0.95) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    :global(.leaflet-popup-close-button) {
+      color: #94a3b8 !important;
+      font-size: 16px !important;
+      
+      &:hover {
+        color: white !important;
+      }
+    }
+
+    :global(.leaflet-control-zoom a) {
+      background: rgba(15, 23, 42, 0.9) !important;
+      color: white !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      
+      &:hover {
+        background: rgba(59, 130, 246, 0.8) !important;
+      }
+    }
+  }
+}
+
+// Map Legend
+.mapLegend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+  }
+
+  &.completed {
+    background: #22c55e;
+  }
+
+  &.construction {
+    background: #3b82f6;
+  }
+
+  &.development {
+    background: #f59e0b;
+  }
+}
+
+// Loading spinner for map placeholder
+.loadingSpinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+// Custom popup content styles
+.customPopup {
+  :global(.leaflet-popup-content) {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 280px !important;
+  }
+}
+
+.popupContent {
+  padding: 1.5rem;
+  color: white;
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+    color: #ffffff;
+  }
+}
+
+.popupStatus {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+
+  &.statusCompleted {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+  }
+
+  &.statusConstruction {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+  }
+
+  &.statusDevelopment {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+  }
+}
+
+.popupLocation {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.popupStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.popupStat {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popupStatValue {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 0.25rem;
+}
+
+.popupStatLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.popupWebsite {
+  display: block;
+  color: #60a5fa;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #93bbfc;
+    text-decoration: underline;
+  }
+}
+
+.popupButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(2px);
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, -30px);
+  }
+  50% {
+    transform: translate(-30px, 50px);
+  }
+  75% {
+    transform: translate(30px, 30px);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .communityCard {
+    .keyMetrics {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      
+      .metricItem {
+        .metricValue {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .popupContent {
+    padding: 1rem;
+  }
+  
+  .popupStats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .popupHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .mapSection {
+    padding: 3rem 0;
+  }
+  
+  .mapContainer {
+    border-radius: 16px;
+  }
+}
