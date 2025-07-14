@@ -26,6 +26,8 @@ interface Community {
   coordinates: [number, number];
 }
 
+
+
 const InvestorsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'strategy' | 'portfolio'>('overview');
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -202,7 +204,7 @@ const InvestorsPage: React.FC = () => {
     const steps = 60;
     const interval = duration / steps;
 
-    const timers: NodeJS.Timeout[] = [];
+    const timers: number[] = [];
 
     // Animate fund size
     let fundStep = 0;
@@ -748,13 +750,13 @@ const InvestorsPage: React.FC = () => {
       )}
 
       {/* Pulse animation CSS */}
-      <style jsx>{`
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 0.3; }
-          50% { transform: scale(1.2); opacity: 0.1; }
-          100% { transform: scale(1); opacity: 0.3; }
-        }
-      `}</style>
+      <style>{`
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(1); opacity: 0.3; }
+  }
+`}</style>
     </div>
   );
 };

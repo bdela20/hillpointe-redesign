@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CommunitiesPage.module.scss';
 
+
 interface Community {
   id: number;
   name: string;
@@ -468,13 +469,13 @@ const CommunitiesPage: React.FC = () => {
       )}
 
       {/* Pulse animation CSS */}
-      <style jsx>{`
-        @keyframes pulse {
-          0% { transform: scale(1); opacity: 0.3; }
-          50% { transform: scale(1.2); opacity: 0.1; }
-          100% { transform: scale(1); opacity: 0.3; }
-        }
-      `}</style>
+      <style>{`
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(1); opacity: 0.3; }
+  }
+`}</style>
     </div>
   );
 };
