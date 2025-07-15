@@ -1,6 +1,7 @@
 // CommunitiesSection.tsx
 import React, { useState, useRef } from 'react';
 import styles from './CommunitiesSection.module.scss';
+import { Link } from 'react-router-dom';
 
 interface Community {
   id: number;
@@ -206,12 +207,12 @@ const CommunitiesSection: React.FC = () => {
             </div>
           </div>
           
-          <a href="/communities" className={styles.viewPortfolioButton}>
-            <span>View Full Portfolio</span>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
+          <Link to="/communities" className={styles.viewPortfolioButton}>
+  <span>View Full Portfolio</span>
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+</Link>
         </div>
       </div>
     </section>
