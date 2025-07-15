@@ -48,7 +48,7 @@ const MetricsSection: React.FC = () => {
       targetValue: 98
     },
     {
-      value: '5',
+      value: '3',
       label: 'States Served',
       description: 'Strategic Sun Belt market presence',
       targetValue: 5
