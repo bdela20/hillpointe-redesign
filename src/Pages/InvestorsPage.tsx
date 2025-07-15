@@ -13,7 +13,6 @@ interface PerformanceMetric {
 interface PortfolioStat {
   label: string;
   value: string;
-  icon: string;
 }
 
 interface Community {
@@ -285,10 +284,10 @@ const InvestorsPage: React.FC = () => {
   ];
 
   const portfolioStats: PortfolioStat[] = [
-    { label: 'Active Communities', value: `${animatedValues.communities}+`, icon: 'C' },
-    { label: 'Total Units', value: '8,500+', icon: 'U' },
-    { label: 'Geographic Markets', value: '3 States', icon: 'M' },
-    { label: 'Workers Housed', value: '23,000+', icon: 'W' }
+    { label: 'Active Communities', value: `${animatedValues.communities}+`,  },
+    { label: 'Total Units', value: '8,500+',  },
+    { label: 'Geographic Markets', value: '3 States',  },
+    { label: 'Workers Housed', value: '23,000+',  }
   ];
 
   return (
@@ -506,16 +505,15 @@ const InvestorsPage: React.FC = () => {
             {activeTab === 'portfolio' && (
               <div className={styles.portfolioContent}>
                 <div className={styles.portfolioStats}>
-                  {portfolioStats.map((stat, index) => (
-                    <div key={index} className={styles.portfolioStat}>
-                      <div className={styles.statIcon}>{stat.icon}</div>
-                      <div className={styles.statInfo}>
-                        <span className={styles.statValue}>{stat.value}</span>
-                        <span className={styles.statLabel}>{stat.label}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+  {portfolioStats.map((stat, index) => (
+    <div key={index} className={styles.portfolioStat}>
+      <div className={styles.statInfo}>
+        <span className={styles.statValue}>{stat.value}</span>
+        <span className={styles.statLabel}>{stat.label}</span>
+      </div>
+    </div>
+  ))}
+</div>
                 
                 <div className={styles.portfolioMap}>
                   <h4>Geographic Diversification</h4>
