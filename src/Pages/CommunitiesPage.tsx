@@ -75,7 +75,7 @@ const CommunitiesPage: React.FC = () => {
     { id: 7, name: 'Pointe Grand Byron', location: 'Byron', state: 'GA', units: 324, status: 'Completed', imageUrl: '/Images/Byron.jpg', coordinates: [32.6474, -83.7549], yearCompleted: 2022, occupancy: 95, website: 'pointegrandbyron.com' },
     { id: 8, name: 'Pointe Grand Augusta', location: 'Augusta', state: 'GA', units: 300, status: 'Under Construction', imageUrl: '/Images/Augusta.jpg', coordinates: [33.4735, -82.0105], yearCompleted: 2024, website: 'Website Coming soon' },
     { id: 9, name: 'Pointe Grand Athens', location: 'Athens', state: 'GA', units: 240, status: 'Completed', imageUrl: '/Images/Athens.jpg', coordinates: [33.9519, -83.3576], yearCompleted: 2023, occupancy: 93, website: 'pointegrandathens.com' },
-    { id: 10, name: 'Pointe Grand Pendergrass', location: 'Pendergrass', state: 'GA', units: 340, status: 'Under Construction', imageUrl: 'public/Images/Pendergrass.jpeg', coordinates: [34.2717, -83.6832], yearCompleted: 2024, website: 'Website Coming soon' },
+    { id: 10, name: 'Pointe Grand Pendergrass', location: 'Pendergrass', state: 'GA', units: 340, status: 'Under Construction', imageUrl: '/Images/Pendergrass.jpeg', coordinates: [34.2717, -83.6832], yearCompleted: 2024, website: 'Website Coming soon' },
     
     // Florida Communities
     { id: 11, name: 'Pointe Grand Ocala', location: 'Ocala', state: 'FL', units: 360, status: 'Completed', imageUrl: '/Images/Ocala.jpg', coordinates: [29.1872, -82.1401], yearCompleted: 2022, occupancy: 96, website: 'pointegrandocala.com' },
