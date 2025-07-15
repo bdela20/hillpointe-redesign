@@ -35,7 +35,7 @@ const TeamPage: React.FC = () => {
       title: 'Co-Founder + Managing Partner',
       bio: 'Kelly Mahoney leads Hillpointe with over 30 years of experience in real estate development and investment. Under his leadership, Hillpointe has become the #4 national developer in workforce housing, closing $750M in Fund V.',
       linkedIn: 'https://www.linkedin.com/in/kelly-mahoney-9966b170/',
-      imageUrl: 'public/Images/Kelly-Mahoney.jpg',
+      imageUrl: '/Images/Kelly-Mahoney.jpg',
       featured: true
     },
     {
@@ -44,7 +44,7 @@ const TeamPage: React.FC = () => {
       title: 'Co-Founder + Managing Partner',
       bio: 'Steven Campisi brings extensive expertise in affordable housing development and operations. He oversees Hillpointe\'s portfolio of 30+ communities and drives the company\'s mission to provide quality workforce housing.',
       linkedIn: 'https://www.linkedin.com/in/steven-campisi-cfa-b5569818/',
-      imageUrl: 'public/Images/steven-campisi-scaled.jpg',
+      imageUrl: '/Images/steven-campisi-scaled.jpg',
       featured: true
     },
     // Other Officers - Update with actual information
@@ -54,7 +54,7 @@ const TeamPage: React.FC = () => {
       title: 'Managing Director + Head of Capital Markets',
       bio: 'Jeff is a Managing Director of Hillpointe overseeing the firms capital raising and investor relations initiatives. ',
       linkedIn: 'https://www.linkedin.com/in/jeff-goll-cfa-85573448/',
-      imageUrl: 'public/Images/Jeff_Goll-500x500.jpg',
+      imageUrl: '/Images/Jeff_Goll-500x500.jpg',
       department: 'DEVELOPMENT + INVESTMENT'
     },
     {
@@ -63,7 +63,7 @@ const TeamPage: React.FC = () => {
       title: 'Chief Financial Officer',
       bio: 'Gabe serves as Chief Financial Officer for Hillpointe, overseeing the firms accounting and administrative functions.',
       linkedIn: 'https://www.linkedin.com/in/gabriel-maroun-shibly-cpa-28918016/',
-      imageUrl: 'public/Images/Shibly_Gabe-500x500.jpg',
+      imageUrl: '/Images/Shibly_Gabe-500x500.jpg',
       department: 'ADMINISTRATION + ACCOUNTING'
     },
     {
@@ -72,7 +72,7 @@ const TeamPage: React.FC = () => {
       title: 'Managing Director of Multifamily Operations',
       bio: 'Mike Boone, CPM, is a seasoned property management executive with over 20 years of experience driving operational excellence and strategic growth in the multifamily real estate sector.',
       linkedIn: 'https://www.linkedin.com/in/dmikeboonecpm/',
-      imageUrl: 'public/Images/Mike-Boone-headshot-500x500.jpg',
+      imageUrl: '/Images/Mike-Boone-headshot-500x500.jpg',
       department: 'PROPERTY MANAGEMENT'
     },
     {
@@ -81,7 +81,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of Property Management',
       bio: 'Rachelle serves as the Vice President of Property Management for Hillpointe where her primary role is to help spearhead the strategic management of the firm property management operations',
       linkedIn: 'https://www.linkedin.com/in/rachelledow/',
-      imageUrl: 'public/Images/Rachelle-Dow_Hillpointe-500x500.jpg',
+      imageUrl: '/Images/Rachelle-Dow_Hillpointe-500x500.jpg',
       department: 'PROPERTY MANAGEMENT'
     },
     {
@@ -90,7 +90,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of Start Up Leasing',
       bio: 'Michele Tate leads Hillpointe Lease Startup programs, bringing deep expertise in multifamily leasing strategy and performance.',
       linkedIn: 'https://www.linkedin.com/in/michele-mcwilliams-tate-b7b8047/',
-      imageUrl: 'public/Images/Michele_McWilliams-Tate-500x500.jpg',
+      imageUrl: '/Images/Michele_McWilliams-Tate-500x500.jpg',
       department: 'PROPERTY MANAGEMENT'
     },
     {
@@ -99,7 +99,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of Marketing',
       bio: 'Jessica leads marketing at Hillpointe, bringing over 20 years of experience in full-funnel marketing, digital strategy, and cross-functional team leadership. ',
       linkedIn: 'https://www.linkedin.com/in/jessicaray/',
-      imageUrl: 'public/Images/Jessica_Ray_V2-500x500.jpg',
+      imageUrl: '/Images/Jessica_Ray_V2-500x500.jpg',
       department: 'ADMINISTRATION + ACCOUNTING'
     },
     {
@@ -108,7 +108,7 @@ const TeamPage: React.FC = () => {
       title: 'Managing Director of Asset Management',
       bio: 'Will brings over nine years of experience in asset management across both public and private real estate sectors.',
       linkedIn: 'https://www.linkedin.com/in/wbohn/',
-      imageUrl: 'public/Images/William_Bohn_edit-500x500.jpg',
+      imageUrl: '/Images/William_Bohn_edit-500x500.jpg',
       department: 'DEVELOPMENT + INVESTMENT'
     },
     {
@@ -117,7 +117,7 @@ const TeamPage: React.FC = () => {
       title: 'Senior Vice President, Debt Capital Markets & Asset Sales',
       bio: 'Manages portfolio performance and implements value-add strategies across all properties.',
       linkedIn: 'https://www.linkedin.com/in/chip-wooten-3898004/',
-      imageUrl: 'public/Images/Chip_Wooten-500x500.jpg',
+      imageUrl: '/Images/Chip_Wooten-500x500.jpg',
       department: 'DEVELOPMENT + INVESTMENT'
     },
     {
@@ -126,7 +126,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of External Affairs',
       bio: 'Marcus serves as the Vice President of External Affairs for Hillpointe. ',
       linkedIn: 'https://www.linkedin.com/in/marcuswiedower/',
-      imageUrl: 'public/Images/Marcus-Wiedower2-500x500.jpg',
+      imageUrl: '/Images/Marcus-Wiedower2-500x500.jpg',
       department: 'ADMINISTRATION + ACCOUNTING'
     },
     {
@@ -135,7 +135,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of Stabilizations',
       bio: 'Dustin is the vice president of facilities and field stabilizations at Hillpointe and formerly served as the director of asset management at Hillpointe. ',
       linkedIn: 'https://www.linkedin.com/in/dustin-brock-589b135/',
-      imageUrl: 'public/Images/Dustin-Brock3-500x500.jpg',
+      imageUrl: '/Images/Dustin-Brock3-500x500.jpg',
       department: 'CONSTRUCTION'
     },
     {
@@ -144,7 +144,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of Construction',
       bio: 'Justin is a senior project manager at Hillpointe, leading the firm’s MEP divisions and a highly skilled team in various specialty projects.',
       linkedIn: 'https://www.linkedin.com/',
-      imageUrl: 'public/Images/Justin-Spangler2-500x500.jpg',
+      imageUrl: '/Images/Justin-Spangler2-500x500.jpg',
       department: 'CONSTRUCTION'
     },
     {
@@ -153,7 +153,7 @@ const TeamPage: React.FC = () => {
       title: 'Vice President of Construction',
       bio: 'Marco is one of Hillpointe’s senior project managers. He heads the firm’s crew divisions and coordinates the scheduling of manpower and suppliers for all construction operations. ',
       linkedIn: 'https://www.linkedin.com/',
-      imageUrl: 'public/Images/Marco-Munoz3-500x500.jpg',
+      imageUrl: '/Images/Marco-Munoz3-500x500.jpg',
       department: 'CONSTRUCTION'
     },
   ];
