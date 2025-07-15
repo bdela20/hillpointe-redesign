@@ -67,7 +67,7 @@ const CommunitiesPage: React.FC = () => {
   const communities: Community[] = [
     // Georgia Communities
     { id: 1, name: 'Pointe Grand Savannah', location: 'Savannah', state: 'GA', units: 288, status: 'Completed', imageUrl: '/Images/Pointe-Grand-Savannah-Grills-scaled.jpg', coordinates: [32.0835, -81.0998], yearCompleted: 2021, occupancy: 96, website: 'pointegrandsavannah.com' },
-    { id: 2, name: 'Pointe Grand Warner Robins', location: 'Warner Robins', state: 'GA', units: 264, status: 'Completed', imageUrl: 'public/Images/Warner-Robins.jpg', coordinates: [32.6130, -83.6324], yearCompleted: 2022, occupancy: 94, website: 'pointegrandwarnerrobins.com' },
+    { id: 2, name: 'Pointe Grand Warner Robins', location: 'Warner Robins', state: 'GA', units: 264, status: 'Completed', imageUrl: '/Images/Warner-Robins.jpg', coordinates: [32.6130, -83.6324], yearCompleted: 2022, occupancy: 94, website: 'pointegrandwarnerrobins.com' },
     { id: 3, name: 'Pointe Grand Macon', location: 'Macon', state: 'GA', units: 276, status: 'Completed', imageUrl: '/Images/Macon.jpg', coordinates: [32.8407, -83.6324], yearCompleted: 2022, occupancy: 95, website: 'pointegrandmacon.com' },
     { id: 4, name: 'Pointe Grand Columbia', location: 'Columbia', state: 'GA', units: 258, status: 'Completed', imageUrl: '/Images/Columbia.jpg', coordinates: [33.5904, -82.1940], yearCompleted: 2021, occupancy: 97, website: 'pointegrandcolumbiaga.com' },
     { id: 5, name: 'Pointe Grand Dawsonville', location: 'Dawsonville', state: 'GA', units: 300, status: 'Completed', imageUrl: '/Images/Dawsonville.jpg', coordinates: [34.4212, -84.1196], yearCompleted: 2023, occupancy: 92, website: 'pointegranddawsonville.com' },
