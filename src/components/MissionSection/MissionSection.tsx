@@ -163,7 +163,7 @@ const MissionSection: React.FC = () => {
                 </div>
                 <div className={styles.impactStat}>
                   <span className={styles.impactNumber}>{counts.commute.toLocaleString()}+</span>
-                  <span className={styles.impactLabel}>Hours saved daily</span>
+                  <span className={styles.impactLabel}>Hours saved</span>
                 </div>
               </div>
               <p className={styles.impactText}>

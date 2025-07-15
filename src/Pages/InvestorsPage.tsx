@@ -505,15 +505,15 @@ const InvestorsPage: React.FC = () => {
             {activeTab === 'portfolio' && (
               <div className={styles.portfolioContent}>
                 <div className={styles.portfolioStats}>
-  {portfolioStats.map((stat, index) => (
-    <div key={index} className={styles.portfolioStat}>
-      <div className={styles.statInfo}>
-        <span className={styles.statValue}>{stat.value}</span>
-        <span className={styles.statLabel}>{stat.label}</span>
-      </div>
-    </div>
-  ))}
-</div>
+                  {portfolioStats.map((stat, index) => (
+                    <div key={index} className={styles.portfolioStat}>
+                      <div className={styles.statInfo}>
+                        <span className={styles.statValue}>{stat.value}</span>
+                        <span className={styles.statLabel}>{stat.label}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
                 
                 <div className={styles.portfolioMap}>
                   <h4>Geographic Diversification</h4>
