@@ -1,6 +1,7 @@
 // src/components/MetricsSection/MetricsSection.tsx
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './MetricsSection.module.scss';
+import { Link } from 'react-router-dom';
 
 interface Particle {
   id: number;
@@ -198,9 +199,9 @@ const MetricsSection: React.FC = () => {
           <p className={styles.ctaText}>
             Join us in solving the workforce housing crisis
           </p>
-          <a href="/investors" className={styles.ctaButton}>
-            Learn About Partnership
-          </a>
+          <Link to="/investors" className={styles.ctaButton}>
+  Learn About Partnership
+</Link>
         </div>
       </div>
     </section>
